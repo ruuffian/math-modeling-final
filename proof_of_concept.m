@@ -60,11 +60,16 @@ agents(:, 4) = 1;
 
 for q = 1:ns
     % Plotting
+    % Calculate direction
+    origin = agents(:, 1:2);
+    destination = [origin(:, 2), origin(:, 1)] ;
+    dir = (origin - destination) ./ abs(origin - destination);
+    % Calculate deltas
     ind = sub2ind(size(M), agents(:, 1), agents(:, 2));
     total = M(ind);
     current = agents(:, 5);
     delta = (total - current) ./ total;
-    %disp(agents)
+    delta = delta .* dir;
     plot(agents(:, 1) + delta, agents(:, 2) + delta, '.');
     axis equal xy
     xlabel('x'), ylabel('y') % axis labels
@@ -74,6 +79,7 @@ for q = 1:ns
     ylabel("Origins")
     drawnow
 
+  
     for i = 1:size(agents, 1)
         if agents(i,5) - agents(i, 3) <= 0 % End of road
             targets = M(agents(i, 2), :);
