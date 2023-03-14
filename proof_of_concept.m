@@ -1,10 +1,3 @@
-%%%%%%%%%%%%%
-% Resources %
-%%%%%%%%%%%%%
-
-% Generating a symmetric matrix: https://www.mathworks.com/matlabcentral/answers/123643-how-to-create-a-symmetric-random-matrix
-
-
 %%%%%%%%%%%%
 % Cleaning %
 %%%%%%%%%%%%
@@ -39,7 +32,7 @@ M = M*unit; % Scale roads to their actual length
 % Now that we have a matrix representing roads and their lengths, we can 
 % create some agents and initialize them with some basic data
 
-initial_pos = M > (.7 * unit); % Bootleg way to create initial agent positions
+initial_pos = triu(M) > (.7 * unit); % Bootleg way to create initial agent positions
 
 agents = zeros(sum(sum(initial_pos)), 5); % Preallocate list holding agents
 % Agents do not expire so this only needs to happen once
