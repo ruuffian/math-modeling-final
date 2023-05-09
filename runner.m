@@ -1,4 +1,6 @@
-m = fukui_ishibashi_no_plot(20, 0.5, 0, 500, 62, 6, 1, 25);
+fukui_ishibashi(20, 0.5, 0, 125, 248, 6, 4, 25);
+
+m = fukui_ishibashi_no_plot(20, 0.5, 0, 125, 248, 6, 4, 25);
 disp(m);
 x = 1:(ns/steps);
 x = steps*x;
@@ -13,3 +15,4 @@ title(sprintf("Flux per %d steps", steps));
 xlabel("Time (unit)");
 ylabel("Flux (cars/20 unit time)");
 axis([0 ns 0 5]);
+

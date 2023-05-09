@@ -29,7 +29,7 @@ First, lets take a look at how this model handles the most basic traffic system-
 
 In this situation, the model quickly reaches equilibrium. Since there are no lane changes, the model does not have any interruptions and remains this way until the simulation ends. Clearly, this traffic model performs extremely well for low density, single-lane traffic. I expect this is because of the semi-unrealistic assumption that drivers will always attempt to drive at v_max. What happens when we expand this simulation to multiple lanes?
 
-![Basic 4-lane traffic](assets/fi_default.mp4)
+![Basic 4-lane traffic, fi_default.mp4](assets/fi_default.mp4)
 
 Here we can see much more traffic jams than before. This is caused primarily by the lane changes- everyone keeps cutting each other off! Since the logic for lane changes only checks if a car is directly in the space next to the agent, cutoffs are very frequent. But, since each agent accelerates out of the jam immediately, the jam evaporates quickly. Most drivers would probably be more frustrated in these conditions, since the flow is start-stop and there are frequent slowdowns, compared to our original model where the flow was very uniform. Lets compare these two situations using two very basic metrics- average velocity and flux per 20 steps.
 
@@ -39,11 +39,26 @@ Here we can see much more traffic jams than before. This is caused primarily by 
 | ![NS velocity](assets/ns_vel.png)         | ![NS Flux](assets/ns_flux.png)  |
 | ![FI default velocity](assets/fi_vel.png) | ![FI default flux](assets/fi_flux.png) |
 
-Before I ran this simulation, I expected the first set of parameters to have both a higher average velocity and a higher flux. However, we see the single-lane simulation hovering just above 0.5 cars per 20 time steps, and the 4-lane simulation sits right above 2 cars/20ts, or roughly 4x. This was surprising to me at first, as I assumed a higher avg velocity would lead to agents more quickly traversing the 
+Before I ran this simulation, I expected the first set of parameters to have both a higher average velocity and a higher flux. However, we see the single-lane simulation hovering just above 0.5 cars per 20 time steps, and the 4-lane simulation sits right above 2 cars/20ts, or roughly 4x. This was surprising to me at first, as I assumed a higher average velocity would lead to agents more quickly traversing the entire road and thus increase the flux. The increase in flux must then be due to the lane increase. In the original simulation the single lane is a bottleneck for how many cars can pass through. In the second simulation, we now have 4x the 'area' that agents can pass through for the purposes of our flux calculation. In fact, the original simulation hovers just above 0.5 cars/20ts, and the second hovers just above 2 cars/20ts, or roughly 4x! So, even though the second sim has much lower average velocity, the increase in lanes more than makes up for the constant slowdowns. Then this begs the question- does this hold as we increase the density of cars on the road?
+
+![Quadrupled Car Density, dense_fi_default.mp4](assets/dense_fi_default.mp4)
+
+| Average Velocity | Flux |
+| ---------------- | ---- |
+| ![Average Velocity for Dense Sim](assets/dense_fi_default_vel.png)                 |![Flux for Dense Sim](assets/dense_fi_default_flux.png)      |
+
+In this simulation, we quadrupled the number of cars on the road. The reason we multipled by 4 was to simulate the density of the single lane simulation over 4 lanes to see how the model performed. Clearly, the driving experience was terrible. With an average velocity below 1 at every sample step, we can confidently say this road is bumper-to-bumper throughout the simulation. However, the flux still oscillates above the single lane road, staying between 1-2 cars/20ts. So, even with completely jammed lanes, the multi-lane road still produces much more throughput than a single lane road.
+
 ## Conclusion
+
 
 ## References
 
 Here is a list of links to various articles, research papers, and videos that I looked at throughout this project. I did not incorporate everything from all of these resources, but I figured they would be of interest to anyone who wanted to learn more about traffic modelling.
 
 [A Review of Traffic Simulation Software, by G. Kotusevski and K.A. Hawick](https://mro.massey.ac.nz/bitstream/handle/10179/4506/TrafficSimulatorReview_arlims.pdf?sequence=1&isAllowed=y)
+[Research on critical characteristics of highway traffic flow based on three phase traffic theory](https://www.sciencedirect.com/science/article/abs/pii/S0378437119309276) - A paper about the Kerner-Klenov-Wolf cellular automaton model
+[Cellular automata approach to three-phase traffic theory](https://iopscience.iop.org/article/10.1088/0305-4470/35/47/303/meta) - Another paper on KKW
+[Speed / Density / Flow Relationships | NCEES Civil Engineering PE Exam \[Section 5.1.1.4; 5.1.2\]](https://www.youtube.com/watch?v=DmrmtYLabrI)
+[Ultradiscrete optimal velocity model: A cellular-automaton model for traffic flow and linear instability of high-flux traffic](https://journals.aps.org/pre/pdf/10.1103/PhysRevE.79.056108)
+[Exact results of 1D traffic cellular automata: The low-density behavior of the Fukui–Ishibashi model](https://www.sciencedirect.com/science/article/pii/S0378437117312438) - Fukui-Ishibashi Model

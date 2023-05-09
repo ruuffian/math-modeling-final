@@ -170,3 +170,24 @@ xlabel("Time (unit)");
 ylabel("Flux (cars/20 unit time)");
 axis([0 ns 0 2]);
 
+% Same road under low density, good weather so less slowdown and more lane
+% changes
+
+fukui_ishibashi(steps, 0.2, 0.5, 1000, 1000, 6, 3, 100);
+SIT2_metrics = fukui_ishibashi_no_plot(steps, 0.2, 0.5, 1000, 1000, 6, 3, 100);
+
+% Plotting
+disp(SIT2_metrics);
+x = 1:(ns/steps);
+x = steps*x;
+plot(x, SIT2_metrics.avg_vel, 'b');
+title(sprintf("Avg Velocity every %d steps", steps));
+xlabel("Time (unit)");
+ylabel("Velocity (unit)");
+axis([0 ns 0 6]);
+figure
+plot(x, SIT2_metrics.flux, 'r');
+title(sprintf("Flux per %d steps", steps));
+xlabel("Time (unit)");
+ylabel("Flux (cars/20 unit time)");
+axis([0 ns 0 2]);
