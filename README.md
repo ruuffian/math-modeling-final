@@ -25,11 +25,11 @@ The plotting for this model is basically a carbon copy of the plotting done by P
 
 First, lets take a look at how this model handles the most basic traffic system- a single road, 50% slowdown chance, relatively low car density.
 
-![Basic Configuration](final-project/assets/ns_default.gif)
+![Basic Configuration](assets/ns_default.gif)
 
 In this situation, the model quickly reaches equilibrium. Since there are no lane changes, the model does not have any interruptions and remains this way until the simulation ends. Clearly, this traffic model performs extremely well for low density, single-lane traffic. I expect this is because of the semi-unrealistic assumption that drivers will always attempt to drive at v_max. What happens when we expand this simulation to multiple lanes?
 
-![Basic 4-lane traffic](final-project/assets/fi_default.mp4)
+![Basic 4-lane traffic](assets/fi_default.mp4)
 
 Here we can see much more traffic jams than before. This is caused primarily by the lane changes- everyone keeps cutting each other off! Since the logic for lane changes only checks if a car is directly in the space next to the agent, cutoffs are very frequent. But, since each agent accelerates out of the jam immediately, the jam evaporates quickly. Most drivers would probably be more frustrated in these conditions, since the flow is start-stop and there are frequent slowdowns, compared to our original model where the flow was very uniform. Lets compare these two situations using two very basic metrics- average velocity and flux per 20 steps.
 
@@ -37,7 +37,7 @@ Here we can see much more traffic jams than before. This is caused primarily by 
 | Average Velocity                          | Flux                            |
 | ----------------------------------------- | ------------------------------- |
 | ![NS velocity](assets/ns_vel.png)         | ![NS Flux](assets/ns_flux.png)  |
-| ![FI default velocity](assets/fi_vel.png) | ![FI default flux](fi_flux.png) |
+| ![FI default velocity](assets/fi_vel.png) | ![FI default flux](assets/fi_flux.png) |
 
 Before I ran this simulation, I expected the first set of parameters to have both a higher average velocity and a higher flux. However, we see the single-lane simulation hovering just above 0.5 cars per 20 time steps, and the 4-lane simulation sits right above 2 cars/20ts, or roughly 4x. This was surprising to me at first, as I assumed a higher avg velocity would lead to agents more quickly traversing the 
 ## Conclusion
