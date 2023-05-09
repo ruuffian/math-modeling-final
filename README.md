@@ -1,11 +1,11 @@
 
 ## Introduction
 
-Traffic flow is one of the most commonly found applications of mathematics and modeling. As the world has grown larger and larger, with more and more complex road systems, vehicles, and logistical problems for non-passenger traffic, the need for quality traffic simulations has grown with it. 
+Traffic flow is a complex and dynamic phenomenon that has a significant impact on transportation systems and the economy. As cities grow and traffic congestion becomes more severe, there is a growing need for effective strategies to manage traffic flow. The Fukui-Ishibashi cellular automaton model is a popular and widely used agent-based model for simulating traffic flow. This model takes into account the interactions between individual vehicles, and can be used to predict traffic patterns under different conditions such as varying traffic volumes or road layouts. It also allows easy-to-change driver behavior such as random slow downs or lane changes. We will investigate a modified version of the Fukui-Ishibashi model and its effectiveness in simulating traffic flow under different scenarios, as well as its potential for use in real-world transportation systems. We will also discuss the limitations of this model and identify areas for further research and development.
 
 ## Methods
 
-There are a lot of assumptions being made in this model. Unfortunately, traffic systems in the real world are extremely complex. An entire paper could be written on just a driver's behavior, and that doesn't even take into account things like car model, destinations, multi-road systems- there is so much that can be added to a traffic model to simulate reality. My model takes a lot of inspiration from the Nagel-Schreckenberg model that was covered in class, with some important modifications. In this simplified cellular automaton model, agents consist of 'unit' vehicles on a road. These vehicles follow some simple update rules moving left to right, and uses periodic boundary limits to wrap cars off the right side of the screen back to the left. There also exists the notion of lanes, meaning cars can exist parallel to each other as long as they are in different lanes.
+There are a lot of assumptions baked into this model. Unfortunately, traffic systems in the real world are extremely complex. An entire paper could be written on just a driver's behavior, and that doesn't even take into account things like car model, destinations, multi-road systems- there is so much that can be added to a traffic model to simulate reality. My model takes a lot of inspiration from the Nagel-Schreckenberg model that was covered in class, with some important modifications. In this simplified cellular automaton model, agents consist of 'unit' vehicles on a road. These vehicles follow some simple update rules moving left to right, and uses periodic boundary limits to wrap cars off the right side of the screen back to the left. There also exists the notion of lanes, meaning cars can exist parallel to each other as long as they are in different lanes.
 
 #### Update Rules
 1. `All agents accelerate to v_max`
@@ -15,7 +15,7 @@ There are a lot of assumptions being made in this model. Unfortunately, traffic 
 5. `Move forwards = velocity`
 6. `Account for boundary`
 
-As you can see, the update rules are very simple. The most important choice of update rule is the first step, where each agent accelerates to max velocity. This allows the model to achieve 'optimal' traffic flow very easily. Since agents are always going as fast as allowed, 
+As you can see, the update rules are very simple. The most important choice of update rule is the first step, where each agent accelerates to max velocity. This allows the model to achieve 'optimal' traffic flow very easily. Since agents are always going as fast as allowed, they accelerate out of traffic jams very efficiently. It is expected that in low-density situations this model will always perform, so it is of interest what happens in high-density situations.
 
 #### Plotting
 
@@ -57,8 +57,13 @@ In this simulation, we quadrupled the number of cars on the road. The reason we 
 Here is a list of links to various articles, research papers, and videos that I looked at throughout this project. I did not incorporate everything from all of these resources, but I figured they would be of interest to anyone who wanted to learn more about traffic modelling.
 
 [A Review of Traffic Simulation Software, by G. Kotusevski and K.A. Hawick](https://mro.massey.ac.nz/bitstream/handle/10179/4506/TrafficSimulatorReview_arlims.pdf?sequence=1&isAllowed=y)
+
 [Research on critical characteristics of highway traffic flow based on three phase traffic theory](https://www.sciencedirect.com/science/article/abs/pii/S0378437119309276) - A paper about the Kerner-Klenov-Wolf cellular automaton model
+
 [Cellular automata approach to three-phase traffic theory](https://iopscience.iop.org/article/10.1088/0305-4470/35/47/303/meta) - Another paper on KKW
+
 [Speed / Density / Flow Relationships | NCEES Civil Engineering PE Exam \[Section 5.1.1.4; 5.1.2\]](https://www.youtube.com/watch?v=DmrmtYLabrI)
+
 [Ultradiscrete optimal velocity model: A cellular-automaton model for traffic flow and linear instability of high-flux traffic](https://journals.aps.org/pre/pdf/10.1103/PhysRevE.79.056108)
+
 [Exact results of 1D traffic cellular automata: The low-density behavior of the Fukui–Ishibashi model](https://www.sciencedirect.com/science/article/pii/S0378437117312438) - Fukui-Ishibashi Model
