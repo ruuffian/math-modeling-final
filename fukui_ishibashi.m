@@ -4,7 +4,8 @@ function fukui_ishibashi(steps_p, p_slow_p, p_change_p, road_length_p, num_vehic
 % that agents are incentivized to accelerate to the maximum allowable
 % velocity at each step, rather than only increase by 1 per step. Another
 % big change is the addition of multi-lane traffic- there can be
-% arbitrarily many lanes. 
+% arbitrarily many lanes, each of which is color coded to the velocity
+% graph above it.
 clf
 % Parameters
 road_length = road_length_p;      % Length of road (m)
@@ -15,7 +16,6 @@ p_change = p_change_p;         % Probability of changing lanes
 ns = 3000;              % Duration of simulation (s)
 lanes = lanes_p;              % # of lanes
 colors = linspecer(lanes); % RGB colors for each lane
-keyboard
 % Initialize vehicle positions
 for q = 1:lanes
     positions{q} = round(road_length/lanes) * q; % Every lane starts with 1 car in it.
@@ -101,11 +101,12 @@ for t = 0:ns
     % Step 6: Periodic Boundary
     for q = 1:lanes
         positions{q} = mod(positions{q}, road_length);
-        positions{q} = sort(positions{q});
+        positions{q} = sort(positions{q}); % As stated above, we MUST sort every time step.
     end
     % Plotting
     clf
     hold on
+    % Plot per-lane
     for q = 1:lanes
         plot(positions{q}-.5,positions{q}*0-q,'.','Color',colors(q, :),'markersize', 10);
         plot(positions{q}-.5,velocities{q},'.:','Color',colors(q, :),'markersize',12) % and plot velocities
@@ -121,6 +122,7 @@ end
 end
 
 function [a] = insert_val(a, val, idx)
+% Utility function to insert a value(s) into a specific index(ces) of a vector
     for i = 1:length(idx)
         a = [a(1:length(a) < idx(i)), val(i), a(1:length(a) >= idx(i))];
     end

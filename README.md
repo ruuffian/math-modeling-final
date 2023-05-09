@@ -51,6 +51,9 @@ In this simulation, we quadrupled the number of cars on the road. The reason we 
 
 ## Conclusion
 
+Under this modified FI traffic model, it is clear that to maximize the flow of traffic through a given area, blindly increasing the number of lanes will work. However, this comes at the cost of a terrible driving experience for those on the road. Even though over time there are more agents passing through the road, the constant start-stop and extremely low average velocity make for what I like to call an "Office Space" commute. There are plenty of examples in the real world where more lanes add more complexity and result in terrible traffic reputations (Houston, LA for example). However, I am very interested in whether or not these reputations are the exact phenomena that I have discovered here- sacrificing driver satisfaction for a higher overall flow. My prediction is that there are much more complex systems at play in these cities as they are not a unidirectional periodic road, but it is interesting to think about.
+
+As much as I enjoyed working on this model, it leaves a lot to be desired in terms of complexity. Like most cellular automata, all agents are subject to the same rule, leaving simulation variance up to some series of probabilities. In future iterations, it would be very interesting to develop several classes of drivers, where each class has some variation of driver behavior assigned to it. As well as this, the lane change logic is extremely removed from reality. Drivers don't usually lane change for no reason, so building up some kind of realistic lane change logic would be a great way to bring this model closer to reality. Finally, this model assumes all cars to be uniform size, acceleration, top speed, and does not account for things like speeding or illegal overtakes. 
 
 ## References
 

@@ -1,3 +1,7 @@
+% In order to run individual situations, comment out the previous ones to
+% save compute time. Also, fukui_ishibashi_no_plot generates avg vel and
+% flux graphs, while fukui_ishibashi() actually runs the simulation.
+
 clear
 ns = 3000;
 steps = 20;

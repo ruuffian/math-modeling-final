@@ -1,9 +1,7 @@
 function [M] = fukui_ishibashi_no_plot(steps_p, p_slow_p, p_change_p, road_length_p, num_vehicles_p, v_max_p, lanes_p, chunk_length_p)
-% A basic implementation of the Fukui-Ishibashi cellular automotan model.
-% The key difference between this and the Nagel-Schreckenberg models are
-% that agents are incentivized to accelerate to the maximum allowable
-% velocity at each step, rather than only increase by 1 per step. Also,
-% this model lends itself to multi-lane traffic.
+% Exactly the same as the original model, simply without plots per time
+% step. This function generates "metric" graphs of the avg vel per n steps
+% and the flux per n steps.
 % Parameters
 road_length = road_length_p;      % Length of road (m)
 num_vehicles = num_vehicles_p;      % Number of vehicles
